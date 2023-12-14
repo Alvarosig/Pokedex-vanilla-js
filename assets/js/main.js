@@ -1,16 +1,5 @@
 const pokemonOl = document.querySelector("#pokemonLi");
 
-pokeApi.getPokemonsApi().then((pokemons) => {
-  if (pokemons) {
-    for (let i = 0; i < pokemons.length; i++) {
-      const pokemon = pokemons[i];
-      pokemonOl.innerHTML += convertPokemonToLi(pokemon);
-    }
-  } else {
-    console.log("No pokemons returned from the API");
-  }
-});
-
 function convertPokemonToLi(pokemon) {
   return `
   <li class="pokemon">
@@ -32,3 +21,13 @@ function convertPokemonToLi(pokemon) {
   </li>
   `;
 }
+
+pokeApi.getPokemonsApi().then((pokemons = []) => {
+  if (pokemons) {
+
+    pokemonOl.innerHTML += pokemons.map(convertPokemonToLi).join("");
+
+  } else {
+    console.log("No pokemons returned from the API");
+  }
+});
