@@ -1,5 +1,8 @@
 const pokemonOl = document.querySelector("#pokemonLi");
 const loadMore = document.querySelector("#loadMore");
+const search = document.querySelector("#search");
+const buttonSearch = document.querySelector("#search-btn");
+const rollBtn = document.querySelector("#roll-btn");
 const limit = 8;
 let offset = 0;
 
@@ -43,3 +46,19 @@ loadMore.addEventListener("click", () => {
   offset += limit;
   loadPokemonItems(offset, limit);
 });
+
+buttonSearch.addEventListener("click", async () => {
+  const searchValue = document.querySelector("#search").value?.trim();
+  const response = !!searchValue ? await pokeApi.searchPokemonsApi(searchValue) : await pokeApi.getPokemonsApi(offset, limit)
+  const newHtml = response.map(convertPokemonToLi).join("");
+  pokemonOl.innerHTML = newHtml;
+  loadMore.disabled = true;
+});
+
+rollBtn.addEventListener("click", async () => {
+  if(buttonSearch){
+    const pokemons = await pokeApi.getPokemonsApi(offset, limit);
+    const newHtml = pokemons.map(convertPokemonToLi).join("");
+    pokemonOl.innerHTML = newHtml;
+  }
+})

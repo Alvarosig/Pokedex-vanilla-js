@@ -10,6 +10,21 @@ const pokeApi = {
     }
   },
 
+  searchPokemonsApi: async function (searchValue, offset = 0, limit = 151) {
+    try {
+      const pokemons = await this.fetchPokemons(offset, limit);
+      const filteredPokemons = pokemons.filter(pokemon => {
+        const name = pokemon.name.toUpperCase();
+        return name.includes(searchValue.toUpperCase());
+      });
+      const pokemonsDetails = await this.fetchDetailsForAllPokemons(filteredPokemons);
+
+      return pokemonsDetails;
+    } catch (error) {
+      console.log("Error" + error);
+    }
+  },
+
   fetchPokemons: async function(offset, limit) {
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     const req = await fetch(url);
