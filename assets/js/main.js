@@ -31,7 +31,16 @@ function convertPokemonToLi(pokemon) {
   `;
 }
 
+let isModalOpen = false;
+
 function openModalWithPokemon(pokemon) {
+
+  if(isModalOpen) {
+    return
+  }
+
+  isModalOpen = true; 
+
   // Cria um novo elemento de diálogo
   const dialog = document.createElement('dialog');
   dialog.setAttribute('id', 'pokemonDialog');
@@ -80,6 +89,10 @@ function openModalWithPokemon(pokemon) {
 
   // Adiciona o diálogo ao corpo do documento
   document.body.appendChild(dialog);
+
+  document.getElementById('closeDialog').addEventListener('click', function() {
+    isModalOpen = false; // Redefine a variável como false quando o modal é fechado
+  });
 
   // Adiciona um evento de clique ao botão de fechar para remover o diálogo
   document.querySelector("#closeDialog").addEventListener("click", () => {
