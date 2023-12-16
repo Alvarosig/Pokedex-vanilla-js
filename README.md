@@ -15,7 +15,7 @@ Este projeto é uma Pokedex - uma enciclopédia virtual de Pokémons. Ele utiliz
 ## Funcionalidades
 
 - Listagem de Pokémons: Exibe uma lista de Pokémons com suas respectivas imagens e nomes.
-- Detalhes do Pokémon: Além de exibir os pokemons, também há mais detalhes, como o tipo dele.
+- Detalhes do Pokémon: Além de exibir os pokemons, também há mais detalhes, como o tipo dele, habilidades, altura e peso em um pop-up.
 
 ## Objetivos de Aprendizado
 
