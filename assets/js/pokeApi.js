@@ -49,6 +49,9 @@ const pokeApi = {
     pokemon.types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
     pokemon.type = pokemon.types[0];
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default;
+    pokemon.height = pokeDetail.height;
+    pokemon.weight = pokeDetail.weight;
+    pokemon.abilities = pokeDetail.abilities.map((abilitiesSlot) => abilitiesSlot.ability.name)
     return pokemon;
   }
 };
